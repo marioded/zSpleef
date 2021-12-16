@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="125fe1e2-b80e-4069-8fe4-38a8cd0e6fcd" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="22NNwKU0EJgKMHbvOZOS69JHhVY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mario\Documents\zSpleef" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="clean install" />
+      <command value="mvn clean package" />
+      <command value="mvn dependency:resolve -U" />
+      <command value="The POM for" />
+      <command value="mvn dependency:get -DrepoUrl=http://repo.maven.apache.org/maven2/ -Dartifact=ro.isdc.wro4j:wro4j-maven-plugin:1.8.0" />
+      <command value="mvn -o compile  " />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Build" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/spleef-plugin" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="125fe1e2-b80e-4069-8fe4-38a8cd0e6fcd" name="Changes" comment="" />
+      <created>1639674325251</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639674325251</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:io.netty:netty-all" />
+    <option featureType="dependencySupport" implementationName="java:javax.inject:javax.inject" />
+    <option featureType="dependencySupport" implementationName="java:commons-codec:commons-codec" />
+    <option featureType="dependencySupport" implementationName="java:org.hamcrest:hamcrest-core" />
+    <option featureType="dependencySupport" implementationName="java:org.codehaus.plexus:plexus-utils" />
+    <option featureType="dependencySupport" implementationName="java:com.google.j2objc:j2objc-annotations" />
+    <option featureType="dependencySupport" implementationName="java:com.googlecode.json-simple:json-simple" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven.resolver:maven-resolver-transport-http" />
+    <option featureType="dependencySupport" implementationName="java:com.google.code.gson:gson" />
+    <option featureType="dependencySupport" implementationName="java:me.clip:placeholderapi" />
+    <option featureType="dependencySupport" implementationName="java:javax.persistence:persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:commons-io:commons-io" />
+    <option featureType="dependencySupport" implementationName="java:net.java.dev.jna:jna-platform" />
+    <option featureType="dependencySupport" implementationName="java:com.google.errorprone:error_prone_annotations" />
+    <option featureType="dependencySupport" implementationName="java:org.spigotmc:spigot-api" />
+    <option featureType="dependencySupport" implementationName="java:commons-lang:commons-lang" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven.resolver:maven-resolver-connector-basic" />
+    <option featureType="dependencySupport" implementationName="java:junit:junit" />
+    <option featureType="dependencySupport" implementationName="java:com.mojang:javabridge" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven.resolver:maven-resolver-impl" />
+    <option featureType="dependencySupport" implementationName="java:com.google.guava:listenablefuture" />
+    <option featureType="dependencySupport" implementationName="java:com.mojang:datafixerupper" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven.resolver:maven-resolver-util" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven:maven-model-builder" />
+    <option featureType="dependencySupport" implementationName="java:org.eclipse.sisu:org.eclipse.sisu.inject" />
+    <option featureType="dependencySupport" implementationName="java:org.jetbrains:annotations" />
+    <option featureType="dependencySupport" implementationName="java:net.md-5:bungeecord-chat" />
+    <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.httpcomponents:httpcore" />
+    <option featureType="dependencySupport" implementationName="java:org.checkerframework:checker-qual" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven:maven-artifact" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven.resolver:maven-resolver-api" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.commons:commons-lang3" />
+    <option featureType="dependencySupport" implementationName="java:net.sf.jopt-simple:jopt-simple" />
+    <option featureType="dependencySupport" implementationName="java:org.slf4j:jcl-over-slf4j" />
+    <option featureType="dependencySupport" implementationName="java:org.avaje:ebean" />
+    <option featureType="dependencySupport" implementationName="java:jline:jline" />
+    <option featureType="dependencySupport" implementationName="java:org.ow2.asm:asm" />
+    <option featureType="dependencySupport" implementationName="java:org.slf4j:slf4j-api" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.logging.log4j:log4j-iostreams" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven.resolver:maven-resolver-spi" />
+    <option featureType="dependencySupport" implementationName="java:net.java.dev.jna:jna" />
+    <option featureType="dependencySupport" implementationName="java:com.google.code.findbugs:jsr305" />
+    <option featureType="dependencySupport" implementationName="java:com.google.guava:guava" />
+    <option featureType="dependencySupport" implementationName="java:org.yaml:snakeyaml" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven:maven-resolver-provider" />
+    <option featureType="dependencySupport" implementationName="java:com.mojang:authlib" />
+    <option featureType="dependencySupport" implementationName="java:it.zmario:spleef-plugin" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven:maven-builder-support" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven:maven-repository-metadata" />
+    <option featureType="dependencySupport" implementationName="java:org.xerial:sqlite-jdbc" />
+    <option featureType="dependencySupport" implementationName="java:com.mojang:brigadier" />
+    <option featureType="dependencySupport" implementationName="java:org.codehaus.plexus:plexus-interpolation" />
+    <option featureType="dependencySupport" implementationName="java:com.google.guava:failureaccess" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.httpcomponents:httpclient" />
+    <option featureType="dependencySupport" implementationName="java:mysql:mysql-connector-java" />
+    <option featureType="dependencySupport" implementationName="java:com.github.oshi:oshi-core" />
+    <option featureType="dependencySupport" implementationName="java:it.unimi.dsi:fastutil" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.logging.log4j:log4j-slf4j18-impl" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.maven:maven-model" />
+    <option featureType="dependencySupport" implementationName="java:org.spigotmc:spigot" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.logging.log4j:log4j-api" />
+    <option featureType="dependencySupport" implementationName="java:org.apache.logging.log4j:log4j-core" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

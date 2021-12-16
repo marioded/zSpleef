@@ -1,0 +1,14 @@
+SetupMode: true
+Debug: false
+LobbyServer: spleefLobby
+SecondsBeforeGameStart: 20
+AllowedBlocksToBreak:
+  - SNOW
+MySQL:
+  Host: 127.0.0.1
+  Port: 3306
+  Username: root
+  Password: password
+  Database: zspleef
+  UseSSL: false
+Arena: {}

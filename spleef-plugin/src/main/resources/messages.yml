@@ -1,0 +1,28 @@
+SnowballItem:
+  Name: '&aSnowball'
+  Lore: []
+  Amount: 1
+  Enchanted: false
+LeaveItem:
+  Slot: 8
+  Material: BED
+  Data: 0
+  Name: '&c&lReturn to Lobby &7(Right-Click)'
+  Lore:
+    - '&7Right-click to return to the lobby!'
+  Amount: 1
+  Enchanted: false
+JoinMessage: '&f%player% &ehas joined the game (&b%online_players%&e/&b%max_players%&e)!'
+LeaveMessage: '&f%player% &ehas left the game (&b%online_players%&e/&b%max_players%&e)!'
+BorderError: '&8• &cYou can''t exit the game border!'
+Game:
+  StartingMessage: '&8• &eThe game starts in &a%seconds% &eseconds!'
+  CancelledWaitingPlayers: '&8• &cStart cancelled! Waiting for other players...'
+  PlayerEliminated: '&8• &7The player &e%player% &7is now eliminated!'
+  Started: '&8• &aThe game has started!'
+ForceStart:
+  Starting: '&8• &aThe game will start soon!'
+  AlreadyStarted: '&8• &cThe game is already started!'
+ForceStop:
+  Stopping: '&8• &aThe game will stop soon!'
+  AlreadyStopped: '&8• &cThe game is already being stopped!'
