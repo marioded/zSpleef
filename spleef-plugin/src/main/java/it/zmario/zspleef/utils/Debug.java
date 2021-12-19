@@ -1,6 +1,5 @@
 package it.zmario.zspleef.utils;
 
-import it.zmario.zspleef.Main;
 import org.bukkit.Bukkit;
 
 public class Debug {

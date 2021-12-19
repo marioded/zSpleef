@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+<module version="4">
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>
@@ -8,32 +8,5 @@
         </autoDetectTypes>
       </configuration>
     </facet>
-  </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output url="file://$MODULE_DIR$/target/classes" />
-    <output-test url="file://$MODULE_DIR$/target/test-classes" />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="spleef-plugin" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_8_R3" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_10_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_11_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_12_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_13_R2" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_14_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_15_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_16_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_16_R2" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_16_R3" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_17_R1" scope="PROVIDED" />
-    <orderEntry type="module" module-name="version_1_18_R1" scope="PROVIDED" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot:1.9.4-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.22" level="project" />
   </component>
 </module>

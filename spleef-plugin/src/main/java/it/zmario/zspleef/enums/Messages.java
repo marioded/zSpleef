@@ -13,14 +13,25 @@ public enum Messages {
 
     ARENA_JOIN_MESSAGE("JoinMessage"),
     ARENA_LEAVE_MESSAGE("LeaveMessage"),
+    ERROR_REACHEDMAXPLAYERS("Errors.ReachedMaxPlayers"),
+    ERROR_BORDER("Errors.BorderError"),
+    ERROR_NOPERMISSION("Errors.NoPermission"),
+    ERROR_INGAMENOWSPECTATOR("Errors.IngameNowSpectator"),
     GAME_CANCELLED_WAITING_PLAYERS("Game.CancelledWaitingPlayers"),
-    GAME_STARTING_MESSAGE("Game.StartingMessage"),
+    GAME_MINIMUM_PLAYERS_REACHED("Game.MinimumPlayersReached"),
+    GAME_STARTING_MESSAGE("Game.Starting"),
+    GAME_FINISHED_MESSAGE("Game.Finish"),
     GAME_PLAYER_ELIMINATED("Game.PlayerEliminated"),
+    GAME_PLAYER_ELIMINATED_QUIT("Game.PlayerEliminatedQuit"),
     GAME_STARTED("Game.Started"),
+    GAME_NOWSPECTATOR("Game.NowSpectator"),
+    GAME_KICK_FINISHED("Game.KickFinished"),
     FORCESTART_STARTING("ForceStart.Starting"),
     FORCESTART_ALREADYSTARTED("ForceStart.AlreadyStarted"),
+    FORCESTART_ALREADYSTARTING("ForceStart.AlreadyStarting"),
     FORCESTOP_STOPPING("ForceStop.Stopping"),
-    FORCESTOP_ALREADYSTOPPED("ForceStop.AlreadyStopped");
+    FORCESTOP_ALREADYSTOPPED("ForceStop.AlreadyStopped"),
+    FORCESTOP_NOTSTARTED("ForceStop.NotStarted");
 
     private final String path;
 

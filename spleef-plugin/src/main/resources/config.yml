@@ -1,9 +1,12 @@
 SetupMode: true
 Debug: false
-LobbyServer: spleefLobby
-SecondsBeforeGameStart: 20
-AllowedBlocksToBreak:
-  - SNOW
+Settings:
+  LobbyServer: spleefLobby
+  SecondsBeforeStart: 30
+  SecondsBeforeRestart: 15
+  MaxSnowballs: 32
+  TitlesEnabled: true
+  SoundsEnabled: true
 MySQL:
   Host: 127.0.0.1
   Port: 3306

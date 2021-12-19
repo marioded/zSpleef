@@ -154,5 +154,10 @@
             <artifactId>version_1_18_R1</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>it.zmario</groupId>
+            <artifactId>version_common</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

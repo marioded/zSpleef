@@ -5,7 +5,6 @@ import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.enums.Messages;
 import it.zmario.zspleef.tasks.GameStartTask;
 import it.zmario.zspleef.utils.ConfigHandler;
-import it.zmario.zspleef.utils.Debug;
 import it.zmario.zspleef.utils.TextBuilder;
 import it.zmario.zspleef.utils.Utils;
 import org.bukkit.Bukkit;
@@ -19,20 +18,33 @@ public class SpleefCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Utils.colorize("&cThis command can be runned only by player!"));
+            sender.sendMessage(Utils.colorize("&8• &cThis command can be executed only by player!"));
             return false;
         }
         Player p = (Player) sender;
         if (Utils.isSetup()) {
+            if (!p.hasPermission("zspleef.admin")) {
+                p.sendMessage(Messages.ERROR_NOPERMISSION.getString(p));
+                return false;
+            }
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("setwaitinglocation")) {
                     ConfigHandler.getConfig().set("Arena.WaitingLocation", Utils.serializeLocation(p.getLocation()));
                     ConfigHandler.reloadConfig();
                     p.sendMessage(Utils.colorize("&8• &aThe waiting location was set with success!"));
                 }
+                if (args[0].equalsIgnoreCase("setspectlocation")) {
+                    ConfigHandler.getConfig().set("Arena.SpectatorLocation", Utils.serializeLocation(p.getLocation()));
+                    ConfigHandler.reloadConfig();
+                    p.sendMessage(Utils.colorize("&8• &aThe spectator location was set with success!"));
+                }
                 if (args[0].equalsIgnoreCase("exit")) {
                     if (ConfigHandler.getConfig().getString("Arena.WaitingLocation") == null) {
                         p.sendMessage(Utils.colorize("&8• &cThe waiting location has not been set!"));
+                        return false;
+                    }
+                    if (ConfigHandler.getConfig().getString("Arena.SpectatorLocation") == null) {
+                        p.sendMessage(Utils.colorize("&8• &cThe spectator location has not been set!"));
                         return false;
                     }
                     if (ConfigHandler.getConfig().getString("Arena.Borders.Pos1") == null) {
@@ -176,6 +188,7 @@ public class SpleefCommand implements CommandExecutor {
             }
             p.sendMessage(Utils.colorize("&ezSpleef &7v" + Main.getInstance().getDescription().getVersion() + " by &bzMario &7- &cSetup Mode"));
             new TextBuilder("&8• &7/spleef setwaitinglocation &7- Sets the spleef waiting location.").setCommand("/spleef setwaitinglocation").setHover("&8» &eClick to run the command!").send(p);
+            new TextBuilder("&8• &7/spleef setspectlocation &7- Sets the spleef spectator location.").setCommand("/spleef setspectlocation").setHover("&8» &eClick to run the command!").send(p);
             new TextBuilder("&8• &7/spleef setspawn <number> &7- Adds a new player spawn.").setSuggestCommand("/spleef setspawn ").setHover("&8» &eClick to suggest the command!").send(p);
             new TextBuilder("&8• &7/spleef removespawn <number> &7- Removes an existing player spawn.").setSuggestCommand("/spleef removespawn ").setHover("&8» &eClick to suggest the command!").send(p);
             new TextBuilder("&8• &7/spleef setminplayers <number> &7- Sets minimum players to start the game.").setSuggestCommand("/spleef setminplayers ").setHover("&8» &eClick to suggest the command!").send(p);
@@ -191,8 +204,10 @@ public class SpleefCommand implements CommandExecutor {
                     p.sendMessage(Messages.FORCESTART_ALREADYSTARTED.getString(p));
                     return false;
                 }
+                boolean debug = args.length > 1 && args[1].equalsIgnoreCase("debug") && p.hasPermission("zspleef.start.debug");
                 p.sendMessage(Messages.FORCESTART_STARTING.getString(p));
-                Main.getInstance().getArena().start(true);
+                if (Main.getInstance().getArena().isStarting()) Main.getInstance().getArena().getStartTask().cancel();
+                Main.getInstance().getArena().start(true, debug);
                 return false;
             }
             if (args[0].equalsIgnoreCase("stop") && p.hasPermission("zspleef.stop")) {
@@ -200,14 +215,19 @@ public class SpleefCommand implements CommandExecutor {
                     p.sendMessage(Messages.FORCESTOP_ALREADYSTOPPED.getString(p));
                     return false;
                 }
+                if (GameState.isState(GameState.WAITING)) {
+                    p.sendMessage(Messages.FORCESTOP_NOTSTARTED.getString(p));
+                    return false;
+                }
                 p.sendMessage(Messages.FORCESTOP_STOPPING.getString(p));
                 Main.getInstance().getArena().restart();
                 return false;
             }
         }
-        p.sendMessage(Utils.colorize("&ezSpleef &7v" + Main.getInstance().getDescription().getVersion() + " by &bzMario"));
+        p.sendMessage(Utils.colorize("&6&lzSpleef &7v" + Main.getInstance().getDescription().getVersion() + " by &bzMario"));
         if (p.hasPermission("zspleef.admin")) {
-            new TextBuilder("&8• &7/spleef start &7- Force starts the arena.").setCommand("/spleef start").setHover("&8» &eClick to run the command!").send(p);
+            new TextBuilder("&8• &7/spleef forcestart &7- Force starts the game.").setCommand("/spleef forcestart").setHover("&8» &eClick to run the command!").send(p);
+            new TextBuilder("&8• &7/spleef forcestop &7- Force stops the game.").setCommand("/spleef forcestop").setHover("&8» &eClick to run the command!").send(p);
         }
 
         return false;

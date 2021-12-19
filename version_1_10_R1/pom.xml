@@ -16,10 +16,9 @@
     <dependencies>
         <dependency>
             <groupId>it.zmario</groupId>
-            <artifactId>spleef-plugin</artifactId>
+            <artifactId>version_common</artifactId>
             <version>1.0</version>
             <type>jar</type>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -30,14 +29,5 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

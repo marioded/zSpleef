@@ -4,12 +4,14 @@ import it.zmario.zspleef.Main;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class BlockBreakListener implements Listener {
 
@@ -17,14 +19,22 @@ public class BlockBreakListener implements Listener {
     public void onBlockBreak(BlockBreakEvent e) {
         Player p = e.getPlayer();
         Block block = e.getBlock();
-        if (Utils.isSetup()) return;
-        e.setCancelled(true);
-        if (!GameState.isState(GameState.INGAME)) return;
-        if (ConfigHandler.getConfig().getStringList("AllowedBlocksToBreak").contains(block.getType().toString().toUpperCase())) {
+        if (GameState.isState(GameState.INGAME) && Main.getInstance().getArena().isPlayer(p) && !Main.getInstance().getArena().isStopping() && block.getType() == Material.SNOW_BLOCK) {
             Main.getInstance().getArena().addBlockToBreaked(block);
             block.setType(Material.AIR);
-            p.getInventory().addItem(Utils.getSnowballItem());
-            p.updateInventory();
+            if (ConfigHandler.getMessages().getBoolean("SnowballItem.Enabled")) {
+                int i = 0;
+                for (ItemStack item : p.getInventory().getContents()) {
+                    if (item == null) continue;
+                    if (item.getType() != Material.SNOW_BALL) continue;
+                    i = i + item.getAmount();
+                }
+                if (i <= ConfigHandler.getConfig().getInt("Settings.MaxSnowballs") - 1) {
+                    p.getInventory().addItem(Utils.getSnowballItem());
+                    p.updateInventory();
+                }
+            }
         }
+        e.setCancelled(true);
     }
 }

@@ -1,5 +1,5 @@
 name: zSpleef
-version: '1.0'
+version: 0.6-RELEASE
 main: it.zmario.zspleef.Main
 authors: [zMario]
 description: A new spleef plugin.

@@ -14,6 +14,9 @@ public class ConfigHandler {
     private static File messages;
     private static YamlConfiguration messagesFile;
 
+    private static File sounds;
+    private static YamlConfiguration soundsFile;
+
     public static void checkConfig() {
         if (!Main.getInstance().getDataFolder().exists()) {
             Main.getInstance().getDataFolder().mkdirs();
@@ -61,6 +64,29 @@ public class ConfigHandler {
 
     public static YamlConfiguration getMessages() {
         return messagesFile;
+    }
+
+    public static void checkSounds() {
+        sounds = new File(Main.getInstance().getDataFolder(), "sounds.yml");
+        if (!sounds.exists()) {
+            Main.getInstance().saveResource("sounds.yml", true);
+            Debug.info("&aFile 'sounds.yml' created with success.");
+        }
+        soundsFile = YamlConfiguration.loadConfiguration(sounds);
+    }
+
+    public static void reloadSounds() {
+        try {
+            soundsFile.save(sounds);
+            soundsFile = YamlConfiguration.loadConfiguration(sounds);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Debug.severe("Can't reload the file 'sounds.yml'.");
+        }
+    }
+
+    public static YamlConfiguration getSounds() {
+        return soundsFile;
     }
 
 

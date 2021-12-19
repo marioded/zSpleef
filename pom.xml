@@ -43,18 +43,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -73,6 +61,7 @@
         <module>version_1_16_R3</module>
         <module>version_1_17_R1</module>
         <module>version_1_18_R1</module>
+        <module>version_common</module>
     </modules>
 
     <repositories>

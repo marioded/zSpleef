@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.potion.PotionEffectType;
 
 public class PlayerJoinListener implements Listener {
 
@@ -21,22 +22,32 @@ public class PlayerJoinListener implements Listener {
                 p.performCommand("spleef");
             return;
         }
+
         switch (GameState.getState()) {
             case WAITING:
-                p.getInventory().setArmorContents(null);
-                p.getInventory().clear();
+                if (Bukkit.getOnlinePlayers().size() > Main.getInstance().getArena().getMaxPlayers()) {
+                    e.setJoinMessage(null);
+                    p.sendMessage(Messages.ERROR_REACHEDMAXPLAYERS.getString(p));
+                    Main.getInstance().getArena().addSpectator(p);
+                    Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation"))), 5);
+                    return;
+                }
                 Main.getInstance().getArena().addPlayer(p);
-                if (Main.getInstance().getArena().getPlayers().size() >= Main.getInstance().getArena().getMinPlayers()) Main.getInstance().getArena().start(false);
-                p.getInventory().setItem(ConfigHandler.getMessages().getInt("LeaveItem.Slot"), Utils.getLeaveItem());
-                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.WaitingLocation"))), 10);
-                e.setJoinMessage(Messages.ARENA_JOIN_MESSAGE.getString(p).replace("%player%", p.getName()).replaceAll("%online_players%", String.valueOf(Bukkit.getOnlinePlayers().size()).replace("%max_players%", String.valueOf(Main.getInstance().getArena().getMaxPlayers()))));
+                if (Main.getInstance().getArena().getPlayers().size() >= Main.getInstance().getArena().getMinPlayers() && !Main.getInstance().getArena().isStarting()) {
+                    Main.getInstance().getArena().start(false, false);
+                    for (Player online : Bukkit.getOnlinePlayers()) {
+                        online.sendMessage(Messages.GAME_MINIMUM_PLAYERS_REACHED.getString(online));
+                    }
+                }
+                if (ConfigHandler.getMessages().getBoolean("LeaveItem.Enabled")) p.getInventory().setItem(ConfigHandler.getMessages().getInt("LeaveItem.Slot"), Utils.getLeaveItem());
+                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.WaitingLocation"))), 5);
+                e.setJoinMessage(Messages.ARENA_JOIN_MESSAGE.getString(p).replace("%player%", p.getName()).replace("%online_players%", String.valueOf(Bukkit.getOnlinePlayers().size())).replaceAll("%max_players%", String.valueOf(Main.getInstance().getArena().getMaxPlayers())));
                 return;
             case INGAME:
+                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation"))), 5);
                 e.setJoinMessage(null);
-                p.getInventory().setArmorContents(null);
-                p.getInventory().clear();
+                p.sendMessage(Messages.ERROR_INGAMENOWSPECTATOR.getString(p));
                 Main.getInstance().getArena().addSpectator(p);
-                return;
         }
 
     }

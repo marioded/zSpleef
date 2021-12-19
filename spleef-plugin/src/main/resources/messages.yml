@@ -1,9 +1,11 @@
 SnowballItem:
+  Enabled: true
   Name: '&aSnowball'
   Lore: []
   Amount: 1
   Enchanted: false
 LeaveItem:
+  Enabled: true
   Slot: 8
   Material: BED
   Data: 0
@@ -12,17 +14,45 @@ LeaveItem:
     - '&7Right-click to return to the lobby!'
   Amount: 1
   Enchanted: false
+ShovelItem:
+  Enabled: true
+  Material: GOLD_SPADE
+  Data: 0
+  Name: '&b&lShovel'
+  Lore:
+    - '&7Use this mythic tool to win the game!'
+  Amount: 1
+  Enchanted: false
 JoinMessage: '&f%player% &ehas joined the game (&b%online_players%&e/&b%max_players%&e)!'
 LeaveMessage: '&f%player% &ehas left the game (&b%online_players%&e/&b%max_players%&e)!'
-BorderError: '&8• &cYou can''t exit the game border!'
+Titles:
+  Game:
+    Countdown: '&c%seconds%;&ePrepare to fight!'
+    NotEnoughPlayers: '&cWaiting for players...;&f'
+    Start: '&a&lFIGHT!;&f'
+    Eliminated: '&c&lELIMINATED!;&7You are now a spectator!'
+    Lose: '&c&lGAME OVER!;&7You didn''t won the game!'
+    Victory: '&6&lVICTORY!;&7You won the game!'
+Errors:
+  ReachedMaxPlayers: '&8• &cThe arena is full! You are now a spectator.'
+  IngameNowSpectator: '&8• &cThe game is already started. You are now a spectator!'
+  BorderError: '&8• &cYou can''t exit the game border!'
+  NoPermission: '&8• &cYou don''t have the permission to execute this command!'
 Game:
-  StartingMessage: '&8• &eThe game starts in &a%seconds% &eseconds!'
+  Starting: '&8• &eThe game starts in &a%seconds% &eseconds!'
   CancelledWaitingPlayers: '&8• &cStart cancelled! Waiting for other players...'
+  MinimumPlayersReached: '&8• &aMinimum players reached! The game is starting...'
   PlayerEliminated: '&8• &7The player &e%player% &7is now eliminated!'
+  PlayerEliminatedQuit: '&8• &7The player &e%player% &7is now eliminated because he left the game!'
   Started: '&8• &aThe game has started!'
+  Finish: '&8• &6&lCongratulations! &eThe player %winner% has won the game!'
+  NowSpectator: '&8• &c&lYou were eliminated! &cYou are now a spectator!'
+  KickFinished: '&8• &cThe game has finished!'
 ForceStart:
   Starting: '&8• &aThe game will start soon!'
   AlreadyStarted: '&8• &cThe game is already started!'
 ForceStop:
   Stopping: '&8• &aThe game will stop soon!'
   AlreadyStopped: '&8• &cThe game is already being stopped!'
+  NotStarted: '&8• &cThe game is not started!'
+ConfigVersion: 1

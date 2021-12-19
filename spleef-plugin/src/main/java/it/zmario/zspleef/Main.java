@@ -2,39 +2,55 @@ package it.zmario.zspleef;
 
 import it.zmario.zspleef.arena.SpleefArena;
 import it.zmario.zspleef.commands.SpleefCommand;
-import it.zmario.zspleef.listeners.*;
 import it.zmario.zspleef.nms.*;
+import it.zmario.zspleef.listeners.*;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Debug;
 import it.zmario.zspleef.utils.Utils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
-    private NMS nms;
+    @Getter private NMS nms;
     @Getter private static Main instance;
     @Getter private SpleefArena arena;
+    @Getter private String version;
 
     @Override
     public void onEnable() {
         instance = this;
         if (!setupNMS()) {
-            Debug.severe("Can't load support for the your server version (" + Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ")! Please use a compatible version from 1.8.8 to 1.18.1. If you have any problems please contact me (zMario).");
+            Debug.severe("Can't load support for the your server version (" + version + ")! Please use a compatible version from 1.8.8 to 1.18.1. If you have any problems please contact me (zMario).");
+        } else {
+            Debug.info("&aSupport for version &l" + version + " &aloaded!");
         }
         checkConfigs();
-        registerListeners(new PlayerJoinListener(), new PlayerQuitListener(), new BlockBreakListener(), new PlayerMoveListener(), new PlayerInteractListener());
+        registerListeners(new PlayerJoinListener());
+        if (!Utils.isSetup())
+            registerListeners(new PlayerQuitListener(), new BlockBreakListener(), new PlayerMoveListener(), new GeneralListeners());
         registerCommands();
         loadArena();
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
+    @Override
+    public void onDisable() {
+        if (Utils.isSetup()) return;
+        for (Block block : getArena().getBlocksBreaked()) {
+            block.setType(Material.SNOW_BLOCK);
+        }
+    }
+
     private void checkConfigs() {
         ConfigHandler.checkConfig();
         ConfigHandler.checkMessages();
+        ConfigHandler.checkSounds();
     }
 
     private void loadArena() {
@@ -42,6 +58,10 @@ public final class Main extends JavaPlugin {
         boolean error = false;
         if (ConfigHandler.getConfig().getString("Arena.WaitingLocation") == null) {
             Debug.severe("&8• &cThe waiting location has not been set!");
+            error = true;
+        }
+        if (ConfigHandler.getConfig().getString("Arena.SpectatorLocation") == null) {
+            Debug.severe("&8• &cThe spectator location has not been set!");
             error = true;
         }
         if (ConfigHandler.getConfig().getString("Arena.Borders.Pos1") == null) {
@@ -90,7 +110,6 @@ public final class Main extends JavaPlugin {
     }
 
     private boolean setupNMS() {
-        String version;
         try {
             version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -98,7 +117,7 @@ public final class Main extends JavaPlugin {
             return false;
         }
         switch (version) {
-            case "v1_8_R1":
+            case "v1_8_R3":
                 nms = new v1_8_R3();
                 break;
             case "v1_9_R2":
@@ -139,9 +158,5 @@ public final class Main extends JavaPlugin {
                 break;
         }
         return (nms != null);
-    }
-    @Override
-    public void onDisable() {
-
     }
 }

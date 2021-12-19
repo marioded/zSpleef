@@ -2,7 +2,7 @@ package it.zmario.zspleef.enums;
 
 public enum GameState {
 
-    WAITING, INGAME, ENDING;
+    WAITING, INGAME;
 
     private static GameState gameState;
 
