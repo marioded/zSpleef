@@ -3,7 +3,9 @@ package it.zmario.zspleef.arena;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.Main;
 import it.zmario.zspleef.enums.Messages;
+import it.zmario.zspleef.scoreboard.SpleefBoard;
 import it.zmario.zspleef.tasks.GameStartTask;
+import it.zmario.zspleef.tasks.TimeLeftTask;
 import it.zmario.zspleef.utils.Cuboid;
 import it.zmario.zspleef.utils.Debug;
 import it.zmario.zspleef.utils.Utils;
@@ -17,25 +19,33 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.sql.Time;
 import java.util.*;
 
 public class SpleefArena {
-
+    
+    private final Main main;
+    
     private final Set<Block> blocksBreaked;
     private final List<UUID> playersInGame;
     private final List<UUID> spectators;
+    private final Map<UUID, SpleefBoard> boards;
     private final Cuboid cuboid;
+    private TimeLeftTask timeLeftTask;
     private GameStartTask startTask;
+    private UUID winnerUUID;
 
     private boolean isStopping;
     private boolean isStarting;
 
     public SpleefArena(Main main, Location pos1, Location pos2) {
         GameState.setGameState(GameState.WAITING);
+        this.main = main;
         blocksBreaked = new HashSet<>();
         playersInGame  = new ArrayList<>();
         spectators = new ArrayList<>();
         cuboid = new Cuboid(pos1, pos2);
+        boards = new HashMap<>();
         isStopping = false;
     }
 
@@ -97,13 +107,15 @@ public class SpleefArena {
     }
 
     public void start(boolean forceStart, boolean debug) {
-        startTask = new GameStartTask(forceStart, debug);
-        startTask.runTaskTimer(Main.getInstance(), 0L, 20L);
+        startTask = new GameStartTask(main, forceStart, debug);
+        startTask.runTaskTimer(main, 0L, 20L);
     }
 
     public void restart() {
+        setStopping(true);
+        getTimeLeftTask().cancel();
         Debug.warn("&eShutting down because of game end...");
-        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskLater(main, () -> {
             for (Player online : Bukkit.getOnlinePlayers()) {
                 online.kickPlayer(Messages.GAME_KICK_FINISHED.getString(online));
             }
@@ -112,23 +124,27 @@ public class SpleefArena {
         }, ConfigHandler.getConfig().getInt("Settings.SecondsBeforeRestart") * 20L);
 
     }
+    
+    public void startTimeLeftTask() {
+        timeLeftTask = new TimeLeftTask();
+        timeLeftTask.runTaskTimer(main, 0L, 20L);
+    }
 
     public void checkWin() {
         if (isStopping) return;
-        if (Main.getInstance().getArena().getPlayers().size() == 1 && GameState.isState(GameState.INGAME) && Main.getInstance().getArena().getMinPlayers() > 1) {
-            Player p = Bukkit.getPlayer(Main.getInstance().getArena().getPlayers().get(0));
+        if (main.getArena().getPlayers().size() == 1 && GameState.isState(GameState.INGAME) && main.getArena().getMinPlayers() > 1) {
+            Player p = Bukkit.getPlayer(main.getArena().getPlayers().get(0));
             for (Player online : Bukkit.getOnlinePlayers()) {
                 if (online != p) Utils.sendTitle(online, "Titles.Game.Lose", 0, 60, 0);
                 online.sendMessage(Messages.GAME_FINISHED_MESSAGE.getString(online).replaceAll("%winner%", p.getName()));
             }
+            winnerUUID = p.getUniqueId();
             Utils.sendTitle(p, "Titles.Game.Victory", 0, 60, 0);
-            Bukkit.getScheduler().runTaskTimer(Main.getInstance(), () -> Utils.spawnFireworks(p.getLocation(), 2), 10L, 15L);
+            Bukkit.getScheduler().runTaskTimer(main, () -> Utils.spawnFireworks(p.getLocation(), 2), 10L, 15L);
             p.getInventory().clear();
             p.setAllowFlight(true);
-            setStopping(true);
             restart();
-        } else if (Main.getInstance().getArena().getPlayers().size() == 0) {
-            setStopping(true);
+        } else if (main.getArena().getPlayers().size() == 0) {
             restart();
         }
     }
@@ -163,5 +179,29 @@ public class SpleefArena {
 
     public GameStartTask getStartTask() {
         return startTask;
+    }
+
+    public TimeLeftTask getTimeLeftTask() {
+        return timeLeftTask;
+    }
+
+    public Map<UUID, SpleefBoard> getBoards() {
+        return boards;
+    }
+
+    public void addBoard(Player player, SpleefBoard board) {
+        boards.put(player.getUniqueId(), board);
+    }
+
+    public void removeBoard(Player player) {
+        getBoards().remove(player.getUniqueId());
+    }
+
+    public String getWinner() {
+        return winnerUUID != null ? Bukkit.getPlayer(winnerUUID).getName() : "&c???";
+    }
+
+    public String getTimeLeft() {
+        return getTimeLeftTask() != null ? String.valueOf(timeLeftTask.timeLeft) : "0";
     }
 }

@@ -3,6 +3,7 @@ package it.zmario.zspleef.listeners;
 import it.zmario.zspleef.Main;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.enums.Messages;
+import it.zmario.zspleef.scoreboard.SpleefBoard;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Utils;
 import org.bukkit.Bukkit;
@@ -10,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.potion.PotionEffectType;
 
 public class PlayerJoinListener implements Listener {
 
@@ -22,7 +22,9 @@ public class PlayerJoinListener implements Listener {
                 p.performCommand("spleef");
             return;
         }
-
+        SpleefBoard board = new SpleefBoard(p);
+        board.updateTitle(Messages.SCOREBOARD_WAITING_TITLE.getString(p));
+        Main.getInstance().getArena().addBoard(p, board);
         switch (GameState.getState()) {
             case WAITING:
                 if (Bukkit.getOnlinePlayers().size() > Main.getInstance().getArena().getMaxPlayers()) {

@@ -21,16 +21,19 @@ public class GameStartTask extends BukkitRunnable {
     boolean forceStart;
     boolean isDebug;
     int seconds;
+    private final Main main;
 
-    public GameStartTask(boolean forceStart, boolean isDebug) {
+    public GameStartTask(Main main, boolean forceStart, boolean isDebug) {
+        this.main = main;
         this.forceStart = forceStart;
         this.isDebug = isDebug;
         this.seconds = forceStart ? 5 : ConfigHandler.getConfig().getInt("Settings.SecondsBeforeStart");
     }
 
     public void run() {
-        if (Main.getInstance().getArena().getPlayers().size() < Main.getInstance().getArena().getMinPlayers() && !forceStart) {
+        if (main.getArena().getPlayers().size() < main.getArena().getMinPlayers() && !forceStart) {
             GameState.setGameState(GameState.WAITING);
+            main.getArena().setStarting(false);
             for (Player online : Bukkit.getOnlinePlayers()) {
                 Utils.sendTitle(online, "Titles.Game.NotEnoughPlayers", 0, 40, 20);
                 Utils.playSound(online, "NotEnoughPlayersSound");
@@ -39,11 +42,13 @@ public class GameStartTask extends BukkitRunnable {
             cancel();
             return;
         }
-        Main.getInstance().getArena().setStarting(true);
+        main.getArena().setStarting(true);
         if (seconds == 0) {
             teleportPlayers();
-            Main.getInstance().getArena().checkWin();
+            main.getArena().checkWin();
             GameState.setGameState(GameState.INGAME);
+            main.getArena().setStarting(false);
+            main.getArena().startTimeLeftTask();
             cancel();
             return;
         }
@@ -79,13 +84,13 @@ public class GameStartTask extends BukkitRunnable {
             online.setExp(1);
             online.setLevel(0);
         }
-        for (UUID onlineUUID : Main.getInstance().getArena().getPlayers()) {
+        for (UUID onlineUUID : main.getArena().getPlayers()) {
             Player online = Bukkit.getPlayer(onlineUUID);
             online.getInventory().clear();
             online.getInventory().setArmorContents(null);
             if (ConfigHandler.getMessages().getBoolean("ShovelItem.Enabled")) online.getInventory().addItem(Utils.getShovelItem());
             online.teleport(locations.remove(rand.nextInt(locations.size())));
-            Main.getInstance().getArena().checkWin();
+            main.getArena().checkWin();
         }
     }
 }

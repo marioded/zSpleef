@@ -4,6 +4,7 @@ import it.zmario.zspleef.arena.SpleefArena;
 import it.zmario.zspleef.commands.SpleefCommand;
 import it.zmario.zspleef.nms.*;
 import it.zmario.zspleef.listeners.*;
+import it.zmario.zspleef.tasks.ScoreboardUpdateTask;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Debug;
 import it.zmario.zspleef.utils.Utils;
@@ -35,8 +36,12 @@ public final class Main extends JavaPlugin {
             registerListeners(new PlayerQuitListener(), new BlockBreakListener(), new PlayerMoveListener(), new GeneralListeners());
         registerCommands();
         loadArena();
-
+        startTasks();
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+    }
+
+    private void startTasks() {
+        new ScoreboardUpdateTask(this).runTaskTimer(this, 0, 20L);
     }
 
     @Override

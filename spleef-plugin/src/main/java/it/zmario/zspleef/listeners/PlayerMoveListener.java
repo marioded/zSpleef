@@ -26,6 +26,9 @@ public class PlayerMoveListener implements Listener {
                 online.sendMessage(Messages.GAME_PLAYER_ELIMINATED.getString(online).replaceAll("%player%", p.getName()));
             }
             Main.getInstance().getArena().checkWin();
+            return;
         }
+        if (p.getLocation().getY() <= ConfigHandler.getConfig().getInt("Arena.DeathLevel"))
+            p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation")));
     }
 }

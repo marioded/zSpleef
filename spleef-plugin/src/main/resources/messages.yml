@@ -47,6 +47,7 @@ Game:
   Started: '&8• &aThe game has started!'
   Finish: '&8• &6&lCongratulations! &eThe player %winner% has won the game!'
   NowSpectator: '&8• &c&lYou were eliminated! &cYou are now a spectator!'
+  TimeFinished: '&8• &cThe game has finished because the time has left! &lNo one has won!'
   KickFinished: '&8• &cThe game has finished!'
 ForceStart:
   Starting: '&8• &aThe game will start soon!'
@@ -55,4 +56,45 @@ ForceStop:
   Stopping: '&8• &aThe game will stop soon!'
   AlreadyStopped: '&8• &cThe game is already being stopped!'
   NotStarted: '&8• &cThe game is not started!'
+Scoreboard:
+  Waiting:
+    Title: '&e&lSPLEEF'
+    Lines:
+      - '&7%date%'
+      - ''
+      - '&8• &fWaiting for players...'
+      - ''
+      - '&8• &fPlayers: &a%players%/&a%max_players%'
+      - ''
+      - '&espigotmc.org'
+  Starting:
+    Title: '&e&lSPLEEF'
+    Lines:
+      - '&7%date%'
+      - ''
+      - '&8• &fStarting in &a%seconds%s'
+      - ''
+      - '&8• &fPlayers: &a%players%/%max_players%'
+      - ''
+      - '&espigotmc.org'
+  Playing:
+    Title: '&e&lSPLEEF'
+    Lines:
+      - '&7%date%'
+      - ''
+      - '&8• &fTime Left: &a%time_left%'
+      - ''
+      - '&8• &fPlayers left: &a%players%'
+      - ''
+      - '&espigotmc.org'
+  Ending:
+    Title: '&e&lSPLEEF'
+    Lines:
+      - '&7%date%'
+      - ''
+      - '&8• &fWinner: &a%winner%'
+      - ''
+      - '&8• &fThanks for playing!'
+      - ''
+      - '&espigotmc.org'
 ConfigVersion: 1

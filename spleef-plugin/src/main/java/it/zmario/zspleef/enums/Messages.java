@@ -25,13 +25,21 @@ public enum Messages {
     GAME_PLAYER_ELIMINATED_QUIT("Game.PlayerEliminatedQuit"),
     GAME_STARTED("Game.Started"),
     GAME_NOWSPECTATOR("Game.NowSpectator"),
+    GAME_TIME_FINISHED("Game.TimeFinished"),
     GAME_KICK_FINISHED("Game.KickFinished"),
     FORCESTART_STARTING("ForceStart.Starting"),
     FORCESTART_ALREADYSTARTED("ForceStart.AlreadyStarted"),
-    FORCESTART_ALREADYSTARTING("ForceStart.AlreadyStarting"),
     FORCESTOP_STOPPING("ForceStop.Stopping"),
     FORCESTOP_ALREADYSTOPPED("ForceStop.AlreadyStopped"),
-    FORCESTOP_NOTSTARTED("ForceStop.NotStarted");
+    FORCESTOP_NOTSTARTED("ForceStop.NotStarted"),
+    SCOREBOARD_WAITING_TITLE("Scoreboard.Waiting.Title"),
+    SCOREBOARD_WAITING_LINES("Scoreboard.Waiting.Lines"),
+    SCOREBOARD_STARTING_TITLE("Scoreboard.Starting.Title"),
+    SCOREBOARD_STARTING_LINES("Scoreboard.Starting.Lines"),
+    SCOREBOARD_PLAYING_TITLE("Scoreboard.Playing.Title"),
+    SCOREBOARD_PLAYING_LINES("Scoreboard.Playing.Lines"),
+    SCOREBOARD_ENDING_TITLE("Scoreboard.Ending.Title"),
+    SCOREBOARD_ENDING_LINES("Scoreboard.Ending.Lines");
 
     private final String path;
 

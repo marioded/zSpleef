@@ -4,6 +4,7 @@ Settings:
   LobbyServer: spleefLobby
   SecondsBeforeStart: 30
   SecondsBeforeRestart: 15
+  TimeLeft: 600
   MaxSnowballs: 32
   TitlesEnabled: true
   SoundsEnabled: true
