@@ -8,6 +8,10 @@ Settings:
   MaxSnowballs: 32
   TitlesEnabled: true
   SoundsEnabled: true
+  ChatFormatEnabled: true
+  Powerups:
+    Enabled: true
+    SecondsBetweenSpawns: 20
 MySQL:
   Host: 127.0.0.1
   Port: 3306

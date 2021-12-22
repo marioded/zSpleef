@@ -3,6 +3,7 @@ package it.zmario.zspleef.listeners;
 import it.zmario.zspleef.Main;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.enums.Messages;
+import it.zmario.zspleef.events.player.PlayerEliminateEvent;
 import it.zmario.zspleef.scoreboard.SpleefBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -29,6 +30,8 @@ public class PlayerQuitListener implements Listener {
             case INGAME:
                 e.setQuitMessage(null);
                 if (Main.getInstance().getArena().isPlayer(p) && !Main.getInstance().getArena().isStopping()) {
+                    PlayerEliminateEvent playerEliminateEvent = new PlayerEliminateEvent(p);
+                    Bukkit.getPluginManager().callEvent(playerEliminateEvent);
                     for (Player online : Bukkit.getOnlinePlayers()) {
                         online.sendMessage(Messages.GAME_PLAYER_ELIMINATED_QUIT.getString(p).replaceAll("%player%", p.getName()).replaceAll("%players%", String.valueOf(Main.getInstance().getArena().getPlayers().size())));
                     }

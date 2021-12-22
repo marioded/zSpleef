@@ -4,14 +4,17 @@ import it.zmario.zspleef.arena.SpleefArena;
 import it.zmario.zspleef.commands.SpleefCommand;
 import it.zmario.zspleef.nms.*;
 import it.zmario.zspleef.listeners.*;
+import it.zmario.zspleef.arena.Powerup;
 import it.zmario.zspleef.tasks.ScoreboardUpdateTask;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Debug;
 import it.zmario.zspleef.utils.Utils;
 import lombok.Getter;
+import me.filoghost.holographicdisplays.api.beta.HolographicDisplaysAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,23 +28,20 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        checkConfigs();
+        registerListeners(new PlayerJoinListener());
+        registerCommands();
+        if (Utils.isSetup()) return;
         if (!setupNMS()) {
             Debug.severe("Can't load support for the your server version (" + version + ")! Please use a compatible version from 1.8.8 to 1.18.1. If you have any problems please contact me (zMario).");
         } else {
             Debug.info("&aSupport for version &l" + version + " &aloaded!");
         }
-        checkConfigs();
-        registerListeners(new PlayerJoinListener());
-        if (!Utils.isSetup())
-            registerListeners(new PlayerQuitListener(), new BlockBreakListener(), new PlayerMoveListener(), new GeneralListeners());
-        registerCommands();
-        loadArena();
         startTasks();
+        registerListeners(new PlayerQuitListener(), new BlockBreakListener(), new PlayerMoveListener(), new PlayerChatListener(), new GeneralListeners());
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-    }
-
-    private void startTasks() {
-        new ScoreboardUpdateTask(this).runTaskTimer(this, 0, 20L);
+        loadArena();
+        loadPowerups();
     }
 
     @Override
@@ -56,10 +56,10 @@ public final class Main extends JavaPlugin {
         ConfigHandler.checkConfig();
         ConfigHandler.checkMessages();
         ConfigHandler.checkSounds();
+        ConfigHandler.checkPowerups();
     }
 
     private void loadArena() {
-        if (ConfigHandler.getConfig().getBoolean("SetupMode")) return;
         boolean error = false;
         if (ConfigHandler.getConfig().getString("Arena.WaitingLocation") == null) {
             Debug.severe("&8• &cThe waiting location has not been set!");
@@ -105,6 +105,21 @@ public final class Main extends JavaPlugin {
         arena = new SpleefArena(this, Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.Borders.Pos1")), Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.Borders.Pos2")));
     }
 
+    private void loadPowerups() {
+        if (!ConfigHandler.getConfig().getBoolean("Settings.Powerups.Enabled")) return;
+        ConfigurationSection section = ConfigHandler.getPowerups().getConfigurationSection("Powerups");
+        if (section.getKeys(false).isEmpty()) return;
+        int i = 0;
+        for (String key : section.getKeys(false)) {
+            i++;
+            getArena().getPowerups().add(new Powerup(key));
+        }
+        Debug.info("Loaded " + i + " powerups with success!");
+    }
+
+    private void startTasks() {
+        new ScoreboardUpdateTask(this).runTaskTimer(this, 0, 20L);
+    }
     private void registerListeners(Listener... listeners) {
         for (Listener listener : listeners)
             Bukkit.getPluginManager().registerEvents(listener, this);
@@ -163,5 +178,9 @@ public final class Main extends JavaPlugin {
                 break;
         }
         return (nms != null);
+    }
+
+    public HolographicDisplaysAPI getHolograms() {
+        return HolographicDisplaysAPI.get(this);
     }
 }

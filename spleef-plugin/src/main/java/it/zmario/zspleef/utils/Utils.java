@@ -1,5 +1,6 @@
 package it.zmario.zspleef.utils;
 
+import com.google.common.base.Preconditions;
 import it.zmario.zspleef.Main;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -10,24 +11,47 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
-    public static String colorize(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message);
+    public static String colorize(String msg) {
+        if (Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18")) {
+            Pattern pattern = Pattern.compile("#[a-fA-F-0-9]{6}");
+            Matcher match = pattern.matcher(msg);
+            while (match.find()) {
+                String color = msg.substring(match.start(), match.end());
+                msg = msg.replace(color, ChatColor.valueOf(color) + "");
+                match = pattern.matcher(msg);
+            }
+        }
+        return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
     public static boolean containsIllegals(String string) {
         Matcher matcher = Pattern.compile("[~#@*+%{}<>\\[\\]|^]").matcher(string);
         return matcher.find();
+    }
+
+    public static ItemStack deserializeItemStack(String path) {
+        if (path == null || path.trim().equals("")) {
+            return null;
+        }
+        String[] parts = path.split(";");
+        if (parts.length == 3) {
+            return new ItemStack(Material.matchMaterial(parts[0]), Integer.parseInt(parts[1]), Short.parseShort(parts[2]));
+        }
+        return null;
     }
 
     public static Location deserializeLocation(String path) {
@@ -37,6 +61,17 @@ public class Utils {
         String[] parts = path.split(";");
         if (parts.length == 6) {
             return new Location(Bukkit.getServer().getWorld(parts[0]), Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Float.parseFloat(parts[4]), Float.parseFloat(parts[5]));
+        }
+        return null;
+    }
+
+    public static PotionEffect deserializePotionEffect(String path) {
+        if (path == null || path.trim().equals("")) {
+            return null;
+        }
+        String[] parts = path.split(";");
+        if (parts.length == 3) {
+            return new PotionEffect(PotionEffectType.getByName(parts[0].toUpperCase()), Integer.parseInt(parts[1]) * 20, Integer.parseInt(parts[2]));
         }
         return null;
     }
@@ -58,7 +93,11 @@ public class Utils {
         if (!ConfigHandler.getConfig().getBoolean("Settings.SoundsEnabled")) return;
         String[] sound = ConfigHandler.getSounds().getString(soundPath).split(";");
         if (sound[0].equalsIgnoreCase("none")) return;
-        player.playSound(player.getLocation(), Sound.valueOf(sound[0].toUpperCase()), Float.parseFloat(sound[1]), Float.parseFloat(sound[2]));
+        try {
+            player.playSound(player.getLocation(), Sound.valueOf(sound[0].toUpperCase()), Float.parseFloat(sound[1]), Float.parseFloat(sound[2]));
+        } catch (IllegalArgumentException e) {
+            Debug.severe("Can't play the sound " + sound[0].toUpperCase() + " &cto " + player.getName() + ". The sound doesn't exist!");
+        }
     }
 
     public static boolean isSetup() {
@@ -140,6 +179,10 @@ public class Utils {
             Firework fw2 = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
             fw2.setFireworkMeta(fwm);
         }
+    }
+
+    public static <T> T random(List<T> paramList) {
+        return paramList.get(new Random().nextInt(paramList.size()));
     }
 
     /* Work in progress

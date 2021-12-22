@@ -3,6 +3,7 @@ package it.zmario.zspleef.listeners;
 import it.zmario.zspleef.Main;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.enums.Messages;
+import it.zmario.zspleef.events.player.PlayerEliminateEvent;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Utils;
 import org.bukkit.Bukkit;
@@ -17,6 +18,8 @@ public class PlayerMoveListener implements Listener {
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
         if (GameState.isState(GameState.INGAME) && Main.getInstance().getArena().isPlayer(p) && p.getLocation().getY() <= ConfigHandler.getConfig().getInt("Arena.DeathLevel") && !Main.getInstance().getArena().isStopping()) {
+            PlayerEliminateEvent playerEliminateEvent = new PlayerEliminateEvent(p);
+            Bukkit.getPluginManager().callEvent(playerEliminateEvent);
             p.getWorld().strikeLightningEffect(p.getLocation());
             Utils.sendTitle(p, "Titles.Game.Eliminated", 0, 60, 0);
             Utils.playSound(p, "EliminatedSound");

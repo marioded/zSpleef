@@ -1,6 +1,7 @@
 package it.zmario.zspleef.enums;
 
 import it.zmario.zspleef.utils.ConfigHandler;
+import it.zmario.zspleef.utils.Utils;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -39,7 +40,9 @@ public enum Messages {
     SCOREBOARD_PLAYING_TITLE("Scoreboard.Playing.Title"),
     SCOREBOARD_PLAYING_LINES("Scoreboard.Playing.Lines"),
     SCOREBOARD_ENDING_TITLE("Scoreboard.Ending.Title"),
-    SCOREBOARD_ENDING_LINES("Scoreboard.Ending.Lines");
+    SCOREBOARD_ENDING_LINES("Scoreboard.Ending.Lines"),
+    CHATFORMAT_PLAYER("ChatFormat.Player"),
+    CHATFORMAT_SPECTATOR("ChatFormat.Spectator");
 
     private final String path;
 
@@ -62,9 +65,9 @@ public enum Messages {
     public List<String> getStringList(Player player) {
         List<String> stringList = new ArrayList<>();
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
-            ConfigHandler.getMessages().getStringList(path).forEach(string -> stringList.add(PlaceholderAPI.setPlaceholders(player, string)));
+            ConfigHandler.getMessages().getStringList(path).forEach(string -> stringList.add(PlaceholderAPI.setPlaceholders(player, Utils.colorize(string))));
         else
-            stringList.addAll(ConfigHandler.getMessages().getStringList(path));
+            ConfigHandler.getMessages().getStringList(path).forEach(string -> stringList.add(Utils.colorize(string)));
         return stringList;
     }
 

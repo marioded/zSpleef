@@ -3,6 +3,7 @@ package it.zmario.zspleef.tasks;
 import it.zmario.zspleef.Main;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.enums.Messages;
+import it.zmario.zspleef.events.game.GameStateChangeEvent;
 import it.zmario.zspleef.utils.Utils;
 import it.zmario.zspleef.utils.ConfigHandler;
 import org.bukkit.Bukkit;
@@ -46,9 +47,11 @@ public class GameStartTask extends BukkitRunnable {
         if (seconds == 0) {
             teleportPlayers();
             main.getArena().checkWin();
+            GameStateChangeEvent gameStateChangeEvent = new GameStateChangeEvent(GameState.INGAME, GameState.getState());
+            Bukkit.getPluginManager().callEvent(gameStateChangeEvent);
             GameState.setGameState(GameState.INGAME);
             main.getArena().setStarting(false);
-            main.getArena().startTimeLeftTask();
+            main.getArena().startTasks();
             cancel();
             return;
         }

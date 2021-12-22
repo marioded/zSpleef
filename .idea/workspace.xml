@@ -4,22 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c10c02eb-9ec6-4562-a156-b3d7e1e39c1b" name="Changes" comment="Second commit.">
-      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/scoreboard/SpleefBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/scoreboard/SpleefBoardReflection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/ScoreboardUpdateTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/TimeLeftTask.java" afterDir="false" />
+    <list default="true" id="c10c02eb-9ec6-4562-a156-b3d7e1e39c1b" name="Changes" comment="Third commit.">
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/arena/Powerup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/game/GameEndEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/game/GamePowerupSpawnEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/game/GameStateChangeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/player/PlayerAddSpectatorEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/player/PlayerEliminateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/player/PlayerPowerupPickupEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerChatListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/PowerupsTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/ItemBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/PowerupBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/zSpleefAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spleef-plugin/src/main/resources/powerups.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/arena/SpleefArena.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/arena/SpleefArena.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/enums/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/enums/Messages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/GeneralListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/GeneralListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerJoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerJoinListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerMoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerMoveListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerQuitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerQuitListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/GameStartTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/GameStartTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/TimeLeftTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/TimeLeftTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/ConfigHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Cuboid.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Cuboid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/resources/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/sounds.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spleef-plugin/src/main/resources/sounds.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +45,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -63,6 +80,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mario\Documents\zSpleef\spleef-plugin\src\main\java\it\zmario\zspleef\scoreboard" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="it.zmario.zspleef.events" />
+      <recent name="it.zmario.zspleef.utils" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -114,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639929328150</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Third commit.">
+      <created>1640022910913</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1640022910913</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -211,6 +239,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Second commit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Second commit." />
+    <MESSAGE value="Third commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Third commit." />
   </component>
 </project>

@@ -1,6 +1,7 @@
 package it.zmario.zspleef.utils;
 
 import it.zmario.zspleef.Main;
+import it.zmario.zspleef.zSpleefAPI;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -16,6 +17,9 @@ public class ConfigHandler {
 
     private static File sounds;
     private static YamlConfiguration soundsFile;
+
+    private static File powerups;
+    private static YamlConfiguration powerupsFile;
 
     public static void checkConfig() {
         if (!Main.getInstance().getDataFolder().exists()) {
@@ -87,6 +91,29 @@ public class ConfigHandler {
 
     public static YamlConfiguration getSounds() {
         return soundsFile;
+    }
+
+    public static void checkPowerups() {
+        powerups = new File(Main.getInstance().getDataFolder(), "powerups.yml");
+        if (!powerups.exists()) {
+            Main.getInstance().saveResource("powerups.yml", true);
+            Debug.info("&aFile 'powerups.yml' created with success.");
+        }
+        powerupsFile = YamlConfiguration.loadConfiguration(powerups);
+    }
+
+    public static void reloadPowerups() {
+        try {
+            powerupsFile.save(powerups);
+            powerupsFile = YamlConfiguration.loadConfiguration(powerups);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Debug.severe("Can't reload the file 'powerups.yml'.");
+        }
+    }
+
+    public static YamlConfiguration getPowerups() {
+        return powerupsFile;
     }
 
 

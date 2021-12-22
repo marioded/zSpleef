@@ -1,9 +1,14 @@
 package it.zmario.zspleef.utils;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 public class Cuboid {
@@ -68,6 +73,20 @@ public class Cuboid {
 
     public int getTotalBlockSize() {
         return this.getHeight() * this.getXWidth() * this.getZWidth();
+    }
+
+    public List<Block> getSnowBlocks() {
+        ArrayList<Block> bL = new ArrayList<>(this.getTotalBlockSize());
+        for (int x = this.xMin; x <= this.xMax; ++x) {
+            for (int y = this.yMin; y <= this.yMax; ++y) {
+                for (int z = this.zMin; z <= this.zMax; ++z) {
+                    Block b = this.world.getBlockAt(x, y, z);
+                    if (b.getType() == Material.SNOW_BLOCK)
+                        bL.add(b);
+                }
+            }
+        }
+        return bL;
     }
 
     public int getXWidth() {
