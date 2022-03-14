@@ -4,96 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14204c2-7091-4ece-b2cc-43037a80db8c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/spleef-plugin.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/arena/Powerup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/arena/SpleefArena.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/commands/SpleefCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/enums/GameState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/enums/Messages.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/game/GameEndEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/game/GamePowerupSpawnEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/game/GameStateChangeEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/player/PlayerAddSpectatorEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/player/PlayerEliminateEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/events/player/PlayerPowerupPickupEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/BlockBreakListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/GeneralListeners.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerChatListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerJoinListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerMoveListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/listeners/PlayerQuitListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/scoreboard/SpleefBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/scoreboard/SpleefBoardReflection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/GameStartTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/PowerupsTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/ScoreboardUpdateTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/tasks/TimeLeftTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/ConfigHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Cuboid.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Debug.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/ItemBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/PowerupBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/TextBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/zSpleefAPI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/messages.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/plugin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/powerups.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spleef-plugin/src/main/resources/sounds.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_10_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_10_R1/src/main/java/it/zmario/zspleef/nms/v1_10_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_10_R1/version_1_10_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_11_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_11_R1/src/main/java/it/zmario/zspleef/nms/v1_11_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_11_R1/version_1_11_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_12_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_12_R1/src/main/java/it/zmario/zspleef/nms/v1_12_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_12_R1/version_1_12_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_13_R2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_13_R2/src/main/java/it/zmario/zspleef/nms/v1_13_R2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_13_R2/version_1_13_R2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_14_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_14_R1/src/main/java/it/zmario/zspleef/nms/v1_14_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_14_R1/version_1_14_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_15_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_15_R1/src/main/java/it/zmario/zspleef/nms/v1_15_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_15_R1/version_1_15_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R1/src/main/java/it/zmario/zspleef/nms/v1_16_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R1/version_1_16_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R2/src/main/java/it/zmario/zspleef/nms/v1_16_R2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R2/version_1_16_R2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R3/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R3/src/main/java/it/zmario/zspleef/nms/v1_16_R3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_16_R3/version_1_16_R3.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_17_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_17_R1/src/main/java/it/zmario/zspleef/nms/v1_17_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_17_R1/version_1_17_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_18_R1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_18_R1/src/main/java/it/zmario/zspleef/nms/v1_18_R1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_18_R1/version_1_18_R1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_8_R3/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_8_R3/src/main/java/it/zmario/zspleef/nms/v1_8_R3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_8_R3/version_1_8_R3.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_9_R2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_9_R2/src/main/java/it/zmario/zspleef/nms/v1_9_R2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_1_9_R2/version_1_9_R2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_common/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_common/src/main/java/it/zmario/zspleef/nms/NMS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version_common/version_common.iml" beforeDir="false" />
+    <list default="true" id="d14204c2-7091-4ece-b2cc-43037a80db8c" name="Changes" comment="Final commit">
+      <change afterPath="$PROJECT_DIR$/.idea/zSpleef.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/SpleefAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/game/GameEndEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/game/GamePowerupSpawnEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/game/GameStateChangeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/player/PlayerAddSpectatorEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/player/PlayerEliminateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/player/PlayerLevelupEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/api/events/player/PlayerPowerupPickupEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/arena/Powerup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/arena/SpleefArena.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/commands/SpleefCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/enums/GameState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/enums/Messages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/levels/LevelManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/listeners/BlockBreakListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/listeners/GeneralListeners.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/listeners/PlayerChatListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/listeners/PlayerJoinListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/listeners/PlayerMoveListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/listeners/PlayerQuitListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/scoreboard/SpleefBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/scoreboard/SpleefBoardReflection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/sql/ConnectionPoolManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/sql/SQLManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/support/PlaceholderAPIExpansion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/tasks/GameStartTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/tasks/PowerupsTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/tasks/ScoreboardUpdateTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/tasks/TimeLeftTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/ConfigHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/Cuboid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/Debug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/Expression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/ItemBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/TextBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/utils/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/it/zmario/zspleef/zSpleef.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/messages.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/powerups.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +55,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -117,7 +72,6 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/spleef-plugin/src/main/java/it/zmario/zspleef/scoreboard" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -193,8 +147,16 @@
       <workItem from="1645527882687" duration="27000" />
       <workItem from="1647247513699" duration="610000" />
       <workItem from="1647266395470" duration="1689000" />
-      <workItem from="1647268145105" duration="272000" />
+      <workItem from="1647268145105" duration="571000" />
     </task>
+    <task id="LOCAL-00001" summary="Final commit">
+      <created>1647268455713</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647268455713</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,5 +172,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final commit" />
   </component>
 </project>

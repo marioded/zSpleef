@@ -1,0 +1,29 @@
+SetupMode: true
+Debug: false
+Settings:
+  LobbyServer: spleefLobby
+  SecondsBeforeStart: 30
+  SecondsBeforeRestart: 15
+  TimeLeft: 600
+  MaxSnowballs: 32
+  TitlesEnabled: true
+  SoundsEnabled: true
+  ChatFormatEnabled: true
+  Powerups:
+    Enabled: true
+    SecondsBetweenSpawns: 20
+  Levels:
+    LevelupExpression: 'level*10'
+    Experience:
+      Win: 5
+      Lose: 2
+MySQL:
+  Host: 127.0.0.1
+  Port: 3306
+  Username: root
+  Password: password
+  Database: zspleef
+  Properties:
+    UseSSL: false
+    VerifyServerCertificate: false
+Arena: {}

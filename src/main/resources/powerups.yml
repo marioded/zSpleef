@@ -1,0 +1,36 @@
+Powerups:
+  Speed:
+    Hologram:
+      TextLine: '&b&lSPEED'
+      ItemLineMaterial: FEATHER
+    ActivatedMessage: '&8• &aThe power up &lSPEED &ais now activated for 10 seconds!'
+    DeactivatedMessage: '&8• &cThe power up &lSPEED &cis now deactivated!'
+    DeactivateDelay: 10
+    Effects:
+      - SPEED;10;0
+    Items: []
+    Commands:
+      - '[console] say %player% picked up the powerup %powerup%'
+      - 'say Me, %player% has picked up the powerup %powerup%'
+  JumpBoost:
+    Hologram:
+      TextLine: '&a&lJUMP BOOST'
+      ItemLineMaterial: RABBIT_FOOT
+    ActivatedMessage: '&8• &aThe power up &lJUMP BOOST &ais now activated for 15 seconds!'
+    DeactivatedMessage: '&8• &cThe power up &lJUMP BOOST &cis now deactivated!'
+    DeactivateDelay: 15
+    Effects:
+      - JUMP;15;0
+    Items: []
+    Commands: []
+  EnderPearl:
+    Hologram:
+      TextLine: '&9&lENDER PEARL'
+      ItemLineMaterial: ENDER_PEARL
+    ActivatedMessage: '&8• &aYou received an ender pearl!'
+    DeactivatedMessage: 'none'
+    DeactivateDelay: 0
+    Effects: []
+    Items:
+      - ENDER_PEARL;1;0
+    Commands: []
