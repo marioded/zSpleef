@@ -1,9 +1,0 @@
-name: zSpleef
-version: 0.6-RELEASE
-main: it.zmario.zspleef.Main
-authors: [zMario]
-description: A new spleef plugin.
-softdepend: [PlaceholderAPI, HolographicDisplays]
-commands:
-  spleef:
-    description: Main command of the plugin.

@@ -12,6 +12,14 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/version_1_10_R1/pom.xml" />
+        <option value="$PROJECT_DIR$/version_1_8_R3/pom.xml" />
+        <option value="$PROJECT_DIR$/version_1_9_R2/pom.xml" />
+        <option value="$PROJECT_DIR$/version_common/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="corretto-16" project-jdk-type="JavaSDK" />
 </project>
