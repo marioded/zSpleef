@@ -172,6 +172,7 @@ public class Utils {
         }
         meta.setLore(lore);
         itemStack.getItemMeta().addEnchant(Enchantment.DURABILITY, 999, true);
+        meta.spigot().setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         itemStack.setItemMeta(meta);
         return itemStack;

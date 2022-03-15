@@ -1,6 +1,6 @@
 package it.zmario.zspleef.tasks;
 
-import dev.jcsoftware.jscoreboards.JPerPlayerMethodBasedScoreboard;
+import it.zmario.zspleef.scoreboard.SpleefBoard;
 import it.zmario.zspleef.zSpleef;
 import it.zmario.zspleef.enums.Messages;
 import it.zmario.zspleef.api.events.game.GameEndEvent;
@@ -36,12 +36,12 @@ public class TimeLeftTask extends BukkitRunnable {
         List<String> lines = new ArrayList<>();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        JPerPlayerMethodBasedScoreboard board = zSpleef.getInstance().getArena().getScoreboard();
         for (Player online : Bukkit.getOnlinePlayers()) {
             lines.clear();
+            SpleefBoard board = zSpleef.getInstance().getArena().getBoards().get(online.getUniqueId());
             Messages.SCOREBOARD_PLAYING_LINES.getStringList(online).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getInstance().getArena().getPlayers().size())).replace("%time_left%", zSpleef.getInstance().getArena().getTimeLeft()))));
-            board.setTitle(online, Messages.SCOREBOARD_PLAYING_TITLE.getString(online));
-            board.setLines(online, lines);
+            board.updateTitle(Messages.SCOREBOARD_PLAYING_TITLE.getString(online));
+            board.updateLines(lines);
         }
         timeLeft--;
     }

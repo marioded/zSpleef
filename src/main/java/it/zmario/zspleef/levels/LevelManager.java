@@ -17,7 +17,7 @@ public class LevelManager {
             player.sendMessage(Messages.LEVELS_LEVELUP.getString(player).replace("%level%", String.valueOf(getLevel(player))));
             Bukkit.getPluginManager().callEvent(new PlayerLevelupEvent(player, getLevel(player), getXP(player)));
             Bukkit.getScheduler().runTaskLater(zSpleef.getInstance(), () -> {
-                Utils.sendTitle(player, ConfigHandler.getMessages().getString("Titles.Levelup").replace("%level%", String.valueOf(getLevel(player))), 20, 60, 20);;
+                Utils.sendTitle(player, ConfigHandler.getMessages().getString("Titles.Levelup").replace("%level%", String.valueOf(getLevel(player) + 1)), 20, 60, 20);;
                 Utils.playSound(player, "LevelupSound");
             }, 5L);
         }

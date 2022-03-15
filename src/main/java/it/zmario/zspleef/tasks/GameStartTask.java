@@ -1,6 +1,6 @@
 package it.zmario.zspleef.tasks;
 
-import dev.jcsoftware.jscoreboards.JPerPlayerMethodBasedScoreboard;
+import it.zmario.zspleef.scoreboard.SpleefBoard;
 import it.zmario.zspleef.zSpleef;
 import it.zmario.zspleef.enums.GameState;
 import it.zmario.zspleef.enums.Messages;
@@ -21,10 +21,10 @@ public class GameStartTask extends BukkitRunnable {
     boolean forceStart;
     boolean isDebug;
     public int seconds;
-    private final zSpleef zSpleef;
+    private final zSpleef plugin;
 
-    public GameStartTask(zSpleef zSpleef, boolean forceStart, boolean isDebug) {
-        this.zSpleef = zSpleef;
+    public GameStartTask(zSpleef plugin, boolean forceStart, boolean isDebug) {
+        this.plugin = plugin;
         this.forceStart = forceStart;
         this.isDebug = isDebug;
         this.seconds = forceStart ? 5 : ConfigHandler.getConfig().getInt("Settings.SecondsBeforeStart");
@@ -34,14 +34,15 @@ public class GameStartTask extends BukkitRunnable {
         List<String> lines = new ArrayList<>();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        JPerPlayerMethodBasedScoreboard board = zSpleef.getInstance().getArena().getScoreboard();
-        if (zSpleef.getArena().getPlayers().size() < zSpleef.getArena().getMinPlayers() && !forceStart) {
+
+        if (plugin.getArena().getPlayers().size() < plugin.getArena().getMinPlayers() && !forceStart) {
             GameState.setGameState(GameState.WAITING);
-            zSpleef.getArena().setStarting(false);
+            plugin.getArena().setStarting(false);
             for (Player online : Bukkit.getOnlinePlayers()) {
-                Messages.SCOREBOARD_WAITING_LINES.getStringList(online).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getArena().getPlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getArena().getMaxPlayers())))));
-                board.setLines(online, Messages.SCOREBOARD_WAITING_TITLE.getString(online));
-                board.setLines(online, lines);
+                SpleefBoard board = plugin.getArena().getBoards().get(online.getUniqueId());
+                Messages.SCOREBOARD_WAITING_LINES.getStringList(online).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(plugin.getArena().getPlayers().size())).replace("%max_players%", String.valueOf(plugin.getArena().getMaxPlayers())))));
+                board.updateTitle(Messages.SCOREBOARD_WAITING_TITLE.getString(online));
+                board.updateLines(lines);
                 Utils.sendTitle(online, ConfigHandler.getMessages().getString("Titles.Game.NotEnoughPlayers"), 0, 40, 20);
                 Utils.playSound(online, "NotEnoughPlayersSound");
                 online.sendMessage(Messages.GAME_CANCELLED_WAITING_PLAYERS.getString(online));
@@ -49,28 +50,30 @@ public class GameStartTask extends BukkitRunnable {
             cancel();
             return;
         }
-        zSpleef.getArena().setStarting(true);
+        plugin.getArena().setStarting(true);
 
         for (Player online : Bukkit.getOnlinePlayers()) {
             lines.clear();
-            Messages.SCOREBOARD_STARTING_LINES.getStringList(online).forEach(line -> lines.add(Utils.colorize(line.replace("%seconds%", String.valueOf(zSpleef.getArena().getStartTask().seconds)).replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getArena().getPlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getArena().getMaxPlayers())))));
-            board.setTitle(online, Messages.SCOREBOARD_STARTING_TITLE.getString(online));
-            board.setLines(online, lines);
+            SpleefBoard board = plugin.getArena().getBoards().get(online.getUniqueId());
+            Messages.SCOREBOARD_STARTING_LINES.getStringList(online).forEach(line -> lines.add(Utils.colorize(line.replace("%seconds%", String.valueOf(plugin.getArena().getStartTask().seconds)).replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(plugin.getArena().getPlayers().size())).replace("%max_players%", String.valueOf(plugin.getArena().getMaxPlayers())))));
+            board.updateTitle(Messages.SCOREBOARD_STARTING_TITLE.getString(online));
+            board.updateLines(lines);
         }
         if (seconds == 0) {
             teleportPlayers();
-            zSpleef.getArena().checkWin();
+            plugin.getArena().checkWin();
             GameStateChangeEvent gameStateChangeEvent = new GameStateChangeEvent(GameState.INGAME, GameState.getState());
             Bukkit.getPluginManager().callEvent(gameStateChangeEvent);
             GameState.setGameState(GameState.INGAME);
             for (Player online : Bukkit.getOnlinePlayers()) {
                 lines.clear();
+                SpleefBoard board = plugin.getArena().getBoards().get(online.getUniqueId());
                 Messages.SCOREBOARD_PLAYING_LINES.getStringList(online).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getInstance().getArena().getPlayers().size())).replace("%time_left%", zSpleef.getInstance().getArena().getTimeLeft()))));
-                board.setTitle(online, Messages.SCOREBOARD_PLAYING_TITLE.getString(online));
-                board.setLines(online, lines);
+                board.updateTitle(Messages.SCOREBOARD_PLAYING_TITLE.getString(online));
+                board.updateLines(lines);
             }
-            zSpleef.getArena().setStarting(false);
-            zSpleef.getArena().startTasks();
+            plugin.getArena().setStarting(false);
+            plugin.getArena().startTasks();
             cancel();
             return;
         }
@@ -105,13 +108,13 @@ public class GameStartTask extends BukkitRunnable {
             online.setExp(1);
             online.setLevel(0);
         }
-        for (UUID onlineUUID : zSpleef.getArena().getPlayers()) {
+        for (UUID onlineUUID : plugin.getArena().getPlayers()) {
             Player online = Bukkit.getPlayer(onlineUUID);
             online.getInventory().clear();
             online.getInventory().setArmorContents(null);
             if (ConfigHandler.getMessages().getBoolean("ShovelItem.Enabled")) online.getInventory().addItem(Utils.getShovelItem());
             online.teleport(locations.remove(rand.nextInt(locations.size())));
-            zSpleef.getArena().checkWin();
+            plugin.getArena().checkWin();
         }
     }
 }

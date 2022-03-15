@@ -7,7 +7,6 @@ import it.zmario.zspleef.levels.LevelManager;
 import it.zmario.zspleef.listeners.*;
 import it.zmario.zspleef.arena.Powerup;
 import it.zmario.zspleef.sql.SQLManager;
-import it.zmario.zspleef.tasks.ScoreboardUpdateTask;
 import it.zmario.zspleef.utils.ConfigHandler;
 import it.zmario.zspleef.utils.Debug;
 import it.zmario.zspleef.utils.Utils;
@@ -41,7 +40,6 @@ public final class zSpleef extends JavaPlugin {
         initDatabase();
         version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
         levels = new LevelManager();
-        startTasks();
         registerListeners(new PlayerQuitListener(), new BlockBreakListener(), new PlayerMoveListener(), new PlayerChatListener(), new GeneralListeners());
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         loadArena();
@@ -124,10 +122,6 @@ public final class zSpleef extends JavaPlugin {
             getArena().getPowerups().add(new Powerup(key));
         }
         Debug.info("Loaded " + i + " powerups with success!");
-    }
-
-    private void startTasks() {
-        new ScoreboardUpdateTask(this).runTaskTimerAsynchronously(this, 0, 20L);
     }
 
     private void registerListeners(Listener... listeners) {

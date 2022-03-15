@@ -19,6 +19,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -94,9 +96,11 @@ public class SpleefArena {
         if (getPlayers().contains(p.getUniqueId())) removePlayer(p);
         PlayerAddSpectatorEvent playerAddSpectatorEvent = new PlayerAddSpectatorEvent(p);
         Bukkit.getPluginManager().callEvent(playerAddSpectatorEvent);
-        for (UUID gamePlayers : playersInGame) {
-            Bukkit.getPlayer(gamePlayers).hidePlayer(p);
-        }
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            for (UUID gamePlayers : playersInGame) {
+                Bukkit.getPlayer(gamePlayers).hidePlayer(p);
+            }
+        }, 20L);
         p.setAllowFlight(true);
         p.getInventory().setArmorContents(null);
         p.getInventory().clear();
@@ -170,21 +174,27 @@ public class SpleefArena {
 
     public void checkWin() {
         if (isStopping) return;
-        if (plugin.getArena().getPlayers().size() == 1 && GameState.isState(GameState.INGAME)) {
+        if (plugin.getArena().getPlayers().size() <= 1 && GameState.isState(GameState.INGAME)) {
             Player p = Bukkit.getPlayer(plugin.getArena().getPlayers().get(0));
             GameEndEvent endEvent = new GameEndEvent(p);
             Bukkit.getPluginManager().callEvent(endEvent);
+            winnerUUID = p.getUniqueId();
+            List<String> lines = new ArrayList<>();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
             for (Player online : Bukkit.getOnlinePlayers()) {
+                lines.clear();
+                SpleefBoard board = boards.get(online.getUniqueId());
+                Messages.SCOREBOARD_ENDING_LINES.getStringList(p).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", p.getName()).replace("%date%", dateFormat.format(date)).replace("%winner%", zSpleef.getInstance().getArena().getWinner()))));
+                board.updateTitle(Messages.SCOREBOARD_ENDING_TITLE.getString(p));
+                board.updateLines(lines);
                 if (online != p) Utils.sendTitle(online, ConfigHandler.getMessages().getString("Titles.Game.Lose"), 0, 60, 0);
                 online.sendMessage(Messages.GAME_FINISHED_MESSAGE.getString(online).replace("%winner%", p.getName()));
             }
-            winnerUUID = p.getUniqueId();
             Utils.sendTitle(p, ConfigHandler.getMessages().getString("Titles.Game.Victory"), 0, 60, 0);
             Bukkit.getScheduler().runTaskTimer(plugin, () -> Utils.spawnFireworks(p.getLocation(), 2), 10L, 15L);
             p.getInventory().clear();
             p.setAllowFlight(true);
-            restart();
-        } else if (plugin.getArena().getPlayers().size() == 0) {
             restart();
         }
     }

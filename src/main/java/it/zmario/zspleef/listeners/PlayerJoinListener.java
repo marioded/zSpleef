@@ -44,16 +44,46 @@ public class PlayerJoinListener implements Listener {
             Messages.SCOREBOARD_STARTING_LINES.getStringList(p).forEach(line -> lines.add(Utils.colorize(line.replace("%seconds%", String.valueOf(zSpleef.getInstance().getArena().getStartTask().seconds)).replace("%player%", p.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getInstance().getArena().getPlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getInstance().getArena().getMaxPlayers())))));
             board.updateTitle(Messages.SCOREBOARD_STARTING_TITLE.getString(p));
             board.updateLines(lines);
+            if (Bukkit.getOnlinePlayers().size() > zSpleef.getInstance().getArena().getMaxPlayers()) {
+                e.setJoinMessage(null);
+                p.sendMessage(Messages.ERROR_REACHEDMAXPLAYERS.getString(p));
+                zSpleef.getInstance().getArena().addSpectator(p);
+                Bukkit.getScheduler().runTaskLater(zSpleef.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation"))), 5L);
+                return;
+            }
+            zSpleef.getInstance().getArena().addPlayer(p);
+            if (zSpleef.getInstance().getArena().getPlayers().size() >= zSpleef.getInstance().getArena().getMinPlayers() && !zSpleef.getInstance().getArena().isStarting()) {
+                zSpleef.getInstance().getArena().start(false, false);
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    online.sendMessage(Messages.GAME_MINIMUM_PLAYERS_REACHED.getString(online));
+                }
+            }
+            if (ConfigHandler.getMessages().getBoolean("LeaveItem.Enabled")) p.getInventory().setItem(ConfigHandler.getMessages().getInt("LeaveItem.Slot"), Utils.getLeaveItem());
+            Bukkit.getScheduler().runTaskLater(zSpleef.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.WaitingLocation"))), 5L);
+            e.setJoinMessage(Messages.ARENA_JOIN_MESSAGE.getString(p).replace("%player%", p.getName()).replace("%online_players%", String.valueOf(Bukkit.getOnlinePlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getInstance().getArena().getMaxPlayers())));
             return;
         }
         if (zSpleef.getInstance().getArena().isStopping()) {
             Messages.SCOREBOARD_ENDING_LINES.getStringList(p).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", p.getName()).replace("%date%", dateFormat.format(date)).replace("%winner%", zSpleef.getInstance().getArena().getWinner()))));
             board.updateTitle(Messages.SCOREBOARD_ENDING_TITLE.getString(p));
             board.updateLines(lines);
+            Bukkit.getScheduler().runTaskLater(zSpleef.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation"))), 5L);
+            e.setJoinMessage(null);
+            p.sendMessage(Messages.ERROR_INGAMENOWSPECTATOR.getString(p));
+            zSpleef.getInstance().getArena().addSpectator(p);
             return;
         }
         switch (GameState.getState()) {
             case WAITING:
+                zSpleef.getInstance().getArena().addPlayer(p);
+                Messages.SCOREBOARD_WAITING_LINES.getStringList(p).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", p.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getInstance().getArena().getPlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getInstance().getArena().getMaxPlayers())))));
+                board.updateTitle(Messages.SCOREBOARD_WAITING_TITLE.getString(p));
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    lines.clear();
+                    SpleefBoard board1 = zSpleef.getInstance().getArena().getBoards().get(online.getUniqueId());
+                    Messages.SCOREBOARD_WAITING_LINES.getStringList(p).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", online.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getInstance().getArena().getPlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getInstance().getArena().getMaxPlayers())))));
+                    board1.updateLines(lines);
+                }
                 if (Bukkit.getOnlinePlayers().size() > zSpleef.getInstance().getArena().getMaxPlayers()) {
                     e.setJoinMessage(null);
                     p.sendMessage(Messages.ERROR_REACHEDMAXPLAYERS.getString(p));
@@ -61,7 +91,6 @@ public class PlayerJoinListener implements Listener {
                     Bukkit.getScheduler().runTaskLater(zSpleef.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation"))), 5L);
                     return;
                 }
-                zSpleef.getInstance().getArena().addPlayer(p);
                 if (zSpleef.getInstance().getArena().getPlayers().size() >= zSpleef.getInstance().getArena().getMinPlayers() && !zSpleef.getInstance().getArena().isStarting()) {
                     zSpleef.getInstance().getArena().start(false, false);
                     for (Player online : Bukkit.getOnlinePlayers()) {
@@ -73,6 +102,9 @@ public class PlayerJoinListener implements Listener {
                 e.setJoinMessage(Messages.ARENA_JOIN_MESSAGE.getString(p).replace("%player%", p.getName()).replace("%online_players%", String.valueOf(Bukkit.getOnlinePlayers().size())).replace("%max_players%", String.valueOf(zSpleef.getInstance().getArena().getMaxPlayers())));
                 return;
             case INGAME:
+                Messages.SCOREBOARD_PLAYING_LINES.getStringList(p).forEach(line -> lines.add(Utils.colorize(line.replace("%player%", p.getName()).replace("%date%", dateFormat.format(date)).replace("%players%", String.valueOf(zSpleef.getInstance().getArena().getPlayers().size())).replace("%time_left%", zSpleef.getInstance().getArena().getTimeLeft()))));
+                board.updateTitle(Messages.SCOREBOARD_PLAYING_TITLE.getString(p));
+                board.updateLines(lines);
                 Bukkit.getScheduler().runTaskLater(zSpleef.getInstance(), () -> p.teleport(Utils.deserializeLocation(ConfigHandler.getConfig().getString("Arena.SpectatorLocation"))), 5L);
                 e.setJoinMessage(null);
                 p.sendMessage(Messages.ERROR_INGAMENOWSPECTATOR.getString(p));
